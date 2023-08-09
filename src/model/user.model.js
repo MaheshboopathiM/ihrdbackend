@@ -28,16 +28,25 @@ User.login = async(req, data) => {
             // hard is means admin
             data(200, null,{"auth_token":token,"redirect":link});
           }else if(result[0].user_type === 1){
+            console.log("teacher")
             let link = "/home/medium";
             // medium means teachers
             data(200, null,{"auth_token":token,"redirect":link});
           }else if(result[0].user_type === 0){
-            let link = "/home/low";
-            // low mwans students and parents
-            data(200, null,{"auth_token":token,"redirect":link});
+            let {id} =result[0];
+            let sql = `select prnnumber from students where user_id =${id}`
+            dbConn.query(sql,(err,result)=>{
+              if(err) throw err;
+              if(result){
+                let {prnnumber} =result[0];
+                let link = "/home/low";
+                // low mwans students and parents
+                data(200, null,{"auth_token":token,"redirect":link,pnrnumber:prnnumber});
+              }
+            })
           }
         }else{
-          data(200,null,{message:"Password Or Email id Wrong"})
+          data(201,null,{message:"Password Or Email id Wrong"})
         }
       } else {
         data(false, '', null);
