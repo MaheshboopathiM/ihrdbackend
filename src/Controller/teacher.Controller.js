@@ -79,9 +79,69 @@ exports.StudentResloveQueryGet = function (req, res) {
       res.status(500).send({ response: 'Failure', message: err });
     };
   };
+exports.AdminTeacherResloveQueryGet = function (req, res) {
+    try {
+        Teacher.AdminTeacherResloveQueryGet(req.params, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.AdminStudentResloveQueryGet = function (req, res) {
+    try {
+        Teacher.AdminStudentResloveQueryGet(req.params, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
 exports.TeacherResloveQueryGet = function (req, res) {
     try {
         Teacher.TeacherResloveQueryGet(req.params, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.AdminTeacherRejectQueryGet = function (req, res) {
+    try {
+        Teacher.AdminTeacherRejectQueryGet(req.params, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.AdminStudentRejectQueryGet = function (req, res) {
+    try {
+        Teacher.AdminStudentRejectQueryGet(req.params, function (status, err, data) {
         if (status === 200) {
           res.status(200).send({ response: 'Success', message: '',data });
         }else if(status === 201){
@@ -222,6 +282,96 @@ exports.TeacherQueryGetone = function (req, res) {
 exports.StudentQueryEdit = function (req, res) {
     try {
         Teacher.StudentQueryEdit(req.body, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.TeacherPEnding = function (req, res) {
+    try {
+        Teacher.TeacherPEnding(req.params, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.StudentPEnding = function (req, res) {
+    try {
+        Teacher.StudentPEnding(req.params, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.AdminStudentQuery = function (req, res) {
+    try {
+        Teacher.AdminStudentQuery(req.body, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.AdminTeacherQuery = function (req, res) {
+    try {
+        Teacher.AdminTeacherQuery(req.body, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.AdminTeacherQueryReject = function (req, res) {
+    try {
+        Teacher.AdminTeacherQueryReject(req.body, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+exports.AdminStudentQueryReject = function (req, res) {
+    try {
+        Teacher.AdminStudentQueryReject(req.body, function (status, err, data) {
         if (status === 200) {
           res.status(200).send({ response: 'Success', message: '',data });
         }else if(status === 201){

@@ -246,3 +246,33 @@ exports.TeachersAdd = function (req, res) {
       res.status(500).send({ response: 'Failure', message: err });
     };
   };
+  exports.AdminTeacherQueryGet = function (req, res) {
+    try {
+        Admin.AdminTeacherQueryGet(req.params, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };
+  exports.forget = function (req, res) {
+    try {
+        Admin.forget(req.body, function (status, err, data) {
+        if (status === 200) {
+          res.status(200).send({ response: 'Success', message: '',data });
+        }else if(status === 201){
+            res.status(201).send({response: "Failure", data})
+        } else {
+          res.status(401).send({ response: "Failure", message: err });
+        }
+      });
+    } catch (err) {
+      res.status(500).send({ response: 'Failure', message: err });
+    };
+  };

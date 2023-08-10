@@ -4,6 +4,7 @@ const router = express.Router()
 const UserController = require('../Controller/user.Controller');
 const AdminController = require('../Controller/admin.Controller');
 const TeacherController = require('../Controller/teacher.Controller');
+const Admin = require('../model/admin.model');
 
 // LogIn Employee
 router.post('/user/login', UserController.login);
@@ -24,33 +25,53 @@ router.post('/admin/students/internal/save', AdminController.StudentMarkAdd);
 router.delete('/admin/delete/teacher/:id/:first_name/:last_name', AdminController.Delete);
 router.delete('/admin/delete/student/:id/:first_name/:last_name', AdminController.S_Delete);
 router.delete('/admin/delete/internal/:id/:first_name/:last_name/:semester', AdminController.StudentInternalDelete);
+
 router.post('/Teacher/Query/internal', TeacherController.TeacherQuery);
+
 router.post('/Student/Query/internal', TeacherController.StudentQuery);
 
 router.get('/Admin/Student/Query', AdminController.AdminQueryGet);
+router.get('/Admin/Teacher/Query', AdminController.AdminTeacherQueryGet);
 
 router.get('/Student/Query/:id', TeacherController.StudentQueryGet);
 router.get('/Teacher/Query/:id', TeacherController.TeacherQueryGet);
 
 router.get('/Student/Query/Reslove/:id', TeacherController.StudentResloveQueryGet);
+router.get('/Admin/Student/Query/Reslove', TeacherController.AdminStudentResloveQueryGet);
+router.get('/Admin/Teacher/Query/Reslove', TeacherController.AdminTeacherResloveQueryGet);
+
 router.get('/Teacher/Query/Reslove/:id', TeacherController.TeacherResloveQueryGet);
 
 router.get('/Student/Query/induvitual/Resolve/:id', TeacherController.StudentResloveQueryGetone);
 router.get('/Teacher/Query/induvitual/Resolve/:id', TeacherController.TeacherResloveQueryGetone);
 
 router.get('/Student/Query/Reject/:id', TeacherController.StudentRejectQueryGet);
+router.get('/Admin/Student/Query/Reject', TeacherController.AdminStudentRejectQueryGet);
+router.get('/Admin/Teacher/Query/Reject', TeacherController.AdminTeacherRejectQueryGet);
+
 router.get('/Teacher/Query/Reject/:id', TeacherController.TeacherRejectQueryGet);
 
 router.get('/Student/Query/induvitual/Reject/:id', TeacherController.StudentRejectQueryGetone);
+
 router.get('/Teacher/Query/induvitual/Reject/:id', TeacherController.TeacherRejectQueryGetone);
 
 router.get('/Student/Query/induvitual/:id', TeacherController.StudentQueryGetone);
 router.get('/Teacher/Query/induvitual/:id', TeacherController.TeacherQueryGetone);
 
 router.post('/Student/Query/Edit', TeacherController.StudentQueryEdit);
+router.post('/Admin/Student/Query/Edit', TeacherController.AdminStudentQuery);
+router.post('/Admin/Teacher/Query/Edit', TeacherController.AdminTeacherQuery);
+router.post('/Admin/Student/Query/reject', TeacherController.AdminStudentQueryReject);
+router.post('/Admin/Teacher/Query/reject', TeacherController.AdminTeacherQueryReject);
+
 router.post('/Teacher/Query/Edit', TeacherController.TeacherQueryEdit);
 
 router.delete('/Student/Query/Delete/:id', TeacherController.StudentQueryDelete);
 router.delete('/Teacher/Query/Delete/:id', TeacherController.TeacherQueryDelete);
+
+router.put('/Admin/Student/Query/pending/:id', TeacherController.StudentPEnding);
+router.put('/Admin/Teacher/Query/pending/:id', TeacherController.TeacherPEnding);
+
+router.post('/forget',AdminController.forget)
 
 module.exports = router
