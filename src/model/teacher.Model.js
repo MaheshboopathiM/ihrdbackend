@@ -709,10 +709,72 @@ Teacher.TeacherRejectQueryGet = async (req, data) => {
   })
 
 }
+Teacher.AdminTeacherRejectQueryGet = async (req, data) => {
+  const id = req.id;
+
+  let sql = `SELECT description,id,teacher_name FROM teacherquery WHERE status=2 ORDER BY id DESC;`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      data(200, "", { result })
+    } else {
+      let result = [];
+      data(200, '', { result })
+    }
+  })
+
+}
+Teacher.AdminStudentRejectQueryGet = async (req, data) => {
+  const id = req.id;
+
+  let sql = `SELECT description,id,student_name FROM studentquery WHERE status=2 ORDER BY id DESC;`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      data(200, "", { result })
+    } else {
+      let result = [];
+      data(200, '', { result })
+    }
+  })
+
+}
 Teacher.StudentRejectQueryGet = async (req, data) => {
   const id = req.id;
 
   let sql = `SELECT description,id FROM studentquery WHERE student_id=${id} and status=2 ORDER BY id DESC;`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      data(200, "", { result })
+    } else {
+      let result = [];
+      data(200, '', { result })
+    }
+  })
+
+}
+Teacher.AdminTeacherResloveQueryGet = async (req, data) => {
+
+  let sql = `SELECT description,id,teacher_name FROM teacherquery WHERE status=1 ORDER BY id DESC;`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      data(200, "", { result })
+    } else {
+      let result = [];
+      data(200, '', { result })
+    }
+  })
+
+}
+Teacher.AdminStudentResloveQueryGet = async (req, data) => {
+
+  let sql = `SELECT description,id,student_name FROM studentquery WHERE status=1 ORDER BY id DESC;`;
 
   dbConn.query(sql, (err, result) => {
     if (err) throw err;
@@ -921,6 +983,46 @@ Teacher.TeacherQueryEdit = async (req, data) => {
   }
 
 }
+Teacher.TeacherPEnding = async (req, data) => {
+  const id = req.id;
+
+  let sql = `UPDATE teacherquery SET status=0 WHERE id=${id};`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result && result.affectedRows !== undefined) {
+      let affected = result.affectedRows;
+      if (affected > 0) {
+        data(200, "", { msg: "Query Pending SucessFully" })
+      } else {
+        data(201, "", { msg: "Query Not Updated" })
+      }
+    } else {
+      data(201, "", { msg: "something happend in backend you can restart backend Server" })
+    }
+  })
+
+}
+Teacher.StudentPEnding = async (req, data) => {
+  const id = req.id;
+
+  let sql = `UPDATE studentquery SET status=0 WHERE id=${id};`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result && result.affectedRows !== undefined) {
+      let affected = result.affectedRows;
+      if (affected > 0) {
+        data(200, "", { msg: "Query Pending SucessFully" })
+      } else {
+        data(201, "", { msg: "Query Not Updated" })
+      }
+    } else {
+      data(201, "", { msg: "something happend in backend you can restart backend Server" })
+    }
+  })
+
+}
 Teacher.StudentQueryEdit = async (req, data) => {
   const id = req.id;
   const description = req.description;
@@ -933,6 +1035,90 @@ Teacher.StudentQueryEdit = async (req, data) => {
       let affected = result.affectedRows;
       if (affected > 0) {
         data(200, "", { msg: "Query Updated SucessFully" })
+      } else {
+        data(201, "", { msg: "Query Not Updated" })
+      }
+    } else {
+      data(201, "", { msg: "something happend in backend you can restart backend Server" })
+    }
+  })
+
+}
+Teacher.AdminTeacherQueryReject = async (req, data) => {
+  const id = req.id;
+  const description = req.description;
+
+  let sql = `UPDATE teacherquery SET admin_message='${description}',status=2 WHERE id=${id};`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result && result.affectedRows !== undefined) {
+      let affected = result.affectedRows;
+      if (affected > 0) {
+        data(200, "", { msg: "Query Rejected SucessFully" })
+      } else {
+        data(201, "", { msg: "Query Not Updated" })
+      }
+    } else {
+      data(201, "", { msg: "something happend in backend you can restart backend Server" })
+    }
+  })
+
+}
+Teacher.AdminStudentQueryReject = async (req, data) => {
+  const id = req.id;
+  const description = req.description;
+
+  let sql = `UPDATE studentquery SET admin_message='${description}',status=2 WHERE id=${id};`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result && result.affectedRows !== undefined) {
+      let affected = result.affectedRows;
+      if (affected > 0) {
+        data(200, "", { msg: "Query Rejected SucessFully" })
+      } else {
+        data(201, "", { msg: "Query Not Updated" })
+      }
+    } else {
+      data(201, "", { msg: "something happend in backend you can restart backend Server" })
+    }
+  })
+
+}
+Teacher.AdminTeacherQuery = async (req, data) => {
+  const id = req.id;
+  const description = req.description;
+
+  let sql = `UPDATE teacherquery SET admin_message='${description}',status=1 WHERE id=${id};`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result && result.affectedRows !== undefined) {
+      let affected = result.affectedRows;
+      if (affected > 0) {
+        data(200, "", { msg: "Query Reslove SucessFully" })
+      } else {
+        data(201, "", { msg: "Query Not Updated" })
+      }
+    } else {
+      data(201, "", { msg: "something happend in backend you can restart backend Server" })
+    }
+  })
+
+}
+Teacher.AdminStudentQuery = async (req, data) => {
+  const id = req.id;
+  const description = req.description;
+
+  let sql = `UPDATE studentquery SET admin_message='${description}',status=1 WHERE id=${id};`;
+
+  dbConn.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result && result.affectedRows !== undefined) {
+      let affected = result.affectedRows;
+      if (affected > 0) {
+        data(200, "", { msg: "Query Reslove SucessFully" })
       } else {
         data(201, "", { msg: "Query Not Updated" })
       }
